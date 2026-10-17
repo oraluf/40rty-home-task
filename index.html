@@ -1,0 +1,488 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="description" content="Agentic Readiness Audits for Vuori and GlassesUSA. 40rty home task by Or Aluf."><style>:root{color-scheme:light}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style></head><body><title>40rty Agentic Readiness Audits</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Poppins:wght@700;800&display=swap">
+<style>
+/* Layout: an audit binder. Ink header band, two brand tabs side by side, then one chapter per brand (slides, findings, files), then method. */
+:root{
+  --paper:#F3F4F7; --panel:#FFFFFF; --ink:#16203A; --muted:#596379; --line:#DADEE7;
+  --band:#16203A; --band-ink:#F3F4F7; --band-muted:#A9B2C6;
+  --accent:#C4531D; --accent-soft:#F7E6DC; --bar:#E2E5EC;
+  --f-display:"Bricolage Grotesque","Avenir Next","Segoe UI",sans-serif;
+  --f-body:"IBM Plex Sans","Segoe UI",Helvetica,Arial,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0F1424; --panel:#161D31; --ink:#E7EAF1; --muted:#9AA3B7; --line:#273049;
+  --band:#0A0E1A; --band-ink:#E7EAF1; --band-muted:#8D97AD;
+  --accent:#E9814B; --accent-soft:#3A2418; --bar:#283149; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0F1424; --panel:#161D31; --ink:#E7EAF1; --muted:#9AA3B7; --line:#273049;
+  --band:#0A0E1A; --band-ink:#E7EAF1; --band-muted:#8D97AD;
+  --accent:#E9814B; --accent-soft:#3A2418; --bar:#283149; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.55}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.12}
+a{color:inherit}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:500}
+.mono{font-family:var(--f-mono)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* header band */
+.band{background:var(--band);color:var(--band-ink)}
+.band .wrap{padding-block:56px 40px;display:grid;gap:22px}
+.band h1{font-size:clamp(34px,5.4vw,58px);font-weight:700;max-width:16ch}
+.band p.lede{font-size:18px;color:var(--band-muted);max-width:60ch;margin:0}
+.band .meta{display:flex;flex-wrap:wrap;gap:8px 22px;font-family:var(--f-mono);font-size:13px;color:var(--band-muted)}
+.band .meta b{color:var(--band-ink);font-weight:500}
+.btn{display:inline-flex;align-items:center;gap:8px;font:600 14px/1 var(--f-body);padding:11px 16px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;text-decoration:none}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.primary:hover{filter:brightness(1.08)}
+.btn.ghost{background:transparent;color:var(--band-ink);border-color:#3B4663}
+.actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.note{font-size:13px;color:var(--muted)}
+.band .note{color:var(--band-muted)}
+
+/* nav */
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+nav.toc .wrap{display:flex;gap:4px;overflow-x:auto;padding-block:8px}
+nav.toc a{font-size:14px;font-weight:500;text-decoration:none;padding:8px 12px;border-radius:6px;color:var(--muted);white-space:nowrap}
+nav.toc a:hover{color:var(--ink);background:var(--panel)}
+
+/* brand cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:20px;padding-block:36px 8px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:24px;display:grid;gap:18px;min-width:0}
+.card-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:flex-start}
+.card h2{font-size:26px}
+.card .domain{font-family:var(--f-mono);font-size:13px;color:var(--muted)}
+.score{text-align:right;flex:none}
+.score .n{font-family:var(--f-display);font-size:52px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.score .n small{font-size:20px;color:var(--muted);font-weight:500}
+.pill{display:inline-block;margin-top:6px;font:500 12px/1 var(--f-mono);padding:5px 8px;border-radius:4px;background:var(--accent-soft);color:var(--accent)}
+.card .thesis{font-family:var(--f-display);font-size:19px;font-weight:500;margin:0}
+.bars{display:grid;grid-template-columns:auto 1fr auto;gap:7px 12px;align-items:center;font-size:13px}
+.bars .lab{color:var(--muted)}
+.bars .track{display:block;height:8px;background:var(--bar);border-radius:4px;overflow:hidden}
+.bars .fill{display:block;height:100%;background:var(--accent);border-radius:4px}
+.bars .v{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.bars .w{font-family:var(--f-mono);color:var(--muted);font-size:11px}
+.card .go{font-weight:600;font-size:14px;color:var(--accent);text-decoration:none}
+.scale-note{font-size:13px;color:var(--muted);padding-bottom:8px}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:22px}
+.stats div{background:var(--panel);padding:16px 18px}
+.stats b{display:block;font-family:var(--f-display);font-size:28px;font-variant-numeric:tabular-nums}
+.stats span{font-size:13px;color:var(--muted)}
+@media (max-width:640px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* chapters */
+section.chapter{padding-block:64px 24px;border-top:1px solid var(--line);margin-top:48px}
+.chapter-head{display:grid;gap:12px;margin-bottom:28px}
+.chapter-head h2{font-size:clamp(28px,3.8vw,40px);max-width:24ch}
+.chapter-head .sub{color:var(--muted);max-width:68ch;margin:0}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:20px;margin-bottom:28px}
+.list-block{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:22px;min-width:0}
+.list-block h3{font-size:15px;font-family:var(--f-mono);font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.list-block ol{margin:0;padding:0;list-style:none;display:grid;gap:14px;counter-reset:i}
+.list-block li{display:grid;grid-template-columns:28px 1fr;gap:6px;counter-increment:i}
+.list-block li::before{content:counter(i);font-family:var(--f-display);font-weight:700;font-size:20px;color:var(--accent);line-height:1.2}
+.list-block li b{display:block}
+.list-block li span{color:var(--muted);font-size:15px}
+.list-block .kpi{font-family:var(--f-mono);font-size:12px;color:var(--accent)}
+
+/* slide viewer */
+.viewer{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;display:grid;gap:12px;margin-bottom:28px}
+.viewer-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.viewer-bar .t{font-weight:600}
+.viewer-bar .count{font-family:var(--f-mono);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.stage{position:relative;aspect-ratio:16/9;max-width:100%;background:#fff;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.stage img{width:100%;height:100%;object-fit:contain;display:block}
+.nav-btn{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-size:20px;cursor:pointer;display:grid;place-items:center;opacity:.92}
+.nav-btn:hover{border-color:var(--accent)}
+.nav-btn.prev{left:10px}.nav-btn.next{right:10px}
+.thumbs{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:8px}
+.thumbs button{padding:0;border:2px solid transparent;border-radius:4px;background:none;cursor:pointer;overflow:hidden;line-height:0}
+.thumbs button[aria-current="true"]{border-color:var(--accent)}
+.thumbs img{width:100%;aspect-ratio:16/9;object-fit:cover}
+@media (max-width:640px){.thumbs{grid-template-columns:repeat(4,minmax(0,1fr))}.nav-btn{width:34px;height:34px;font-size:16px}}
+
+/* files */
+.files{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:14px;margin-bottom:24px}
+.file{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px;display:grid;gap:10px;align-content:start;min-width:0}
+.file .ft{font-weight:600}
+.file .fd{font-size:14px;color:var(--muted)}
+.file .fm{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.file .actions .btn{padding:8px 12px;font-size:13px}
+
+/* email */
+details.email{background:var(--panel);border:1px solid var(--line);border-radius:10px}
+details.email summary{cursor:pointer;padding:16px 20px;font-weight:600;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+details.email summary span{font-family:var(--f-mono);font-size:12px;color:var(--muted);font-weight:400}
+.email-body{padding:0 20px 20px;display:grid;gap:12px}
+.email-body .subj{font-size:14px;border:1px solid var(--line);border-radius:6px;padding:10px 12px}
+.email-body .subj b{color:var(--muted);font-weight:500;margin-right:8px}
+.email-body pre{white-space:pre-wrap;font-family:var(--f-body);font-size:15px;margin:0;max-width:68ch}
+
+/* method */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));gap:12px;margin-bottom:28px;padding:0;list-style:none;counter-reset:s}
+.steps li{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;counter-increment:s;display:grid;gap:6px;align-content:start}
+.steps li::before{content:"Step " counter(s);font-family:var(--f-mono);font-size:12px;color:var(--accent);letter-spacing:.06em}
+.steps b{font-family:var(--f-display);font-size:17px}
+.steps span{font-size:14px;color:var(--muted)}
+.tbl{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:10px;margin-bottom:24px}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:620px}
+th,td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--f-mono);font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:600;white-space:nowrap}
+.rule{background:var(--accent-soft);border-radius:10px;padding:18px 20px;margin-bottom:24px;max-width:80ch}
+.rule b{color:var(--accent)}
+footer{border-top:1px solid var(--line);margin-top:56px}
+footer .wrap{padding-block:28px 40px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:6px;font-size:14px;z-index:20}
+@media (prefers-reduced-motion:no-preference){.stage img{transition:opacity .15s}}
+
+/* opening intro: 40rty wordmark, then the author line; the curtain lifts by itself */
+.intro{position:fixed;inset:0;z-index:50;background:#0E162B;color:#fff;display:grid;place-items:center;padding:24px;animation:introLift .8s cubic-bezier(.7,0,.2,1) 3.1s forwards}
+.intro-inner{display:grid;justify-items:center;gap:26px;text-align:center}
+.wordmark{font-family:"Poppins","Avenir Next","Segoe UI",sans-serif;font-weight:800;font-size:clamp(64px,13vw,120px);line-height:.86;letter-spacing:-.02em;display:grid;justify-items:start}
+.wordmark span{display:block;overflow:hidden}
+.wordmark span i{display:block;font-style:normal;transform:translateY(105%);animation:introUp .7s cubic-bezier(.2,.8,.2,1) forwards}
+.wordmark span:nth-child(2) i{animation-delay:.18s}
+.intro-rule{width:min(240px,60vw);height:2px;background:#E9814B;transform:scaleX(0);transform-origin:left;animation:introRule .6s ease-out .85s forwards}
+.intro-by{display:grid;gap:6px;opacity:0;animation:introFade .6s ease-out 1.25s forwards}
+.intro-by b{font-family:var(--f-display);font-size:clamp(26px,4.5vw,38px);font-weight:700}
+.intro-by span{font-family:var(--f-mono);font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:#E9814B}
+.intro-skip{position:absolute;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));background:none;border:1px solid #3B4663;color:#A9B2C6;font:500 13px var(--f-body);padding:8px 12px;border-radius:6px;cursor:pointer;opacity:0;animation:introFade .4s ease-out .6s forwards}
+.intro-skip:hover{color:#fff;border-color:#A9B2C6}
+.intro.done{animation:introLift .5s cubic-bezier(.7,0,.2,1) forwards}
+@keyframes introUp{to{transform:none}}
+@keyframes introRule{to{transform:scaleX(1)}}
+@keyframes introFade{to{opacity:1}}
+@keyframes introLift{to{transform:translateY(-100%);visibility:hidden}}
+@media (prefers-reduced-motion:reduce){.intro{display:none}}
+</style>
+
+<div class="intro" id="intro" role="presentation">
+  <div class="intro-inner">
+    <div class="wordmark" aria-label="40rty"><span><i>40</i></span><span><i>rty</i></span></div>
+    <div class="intro-rule"></div>
+    <div class="intro-by"><b>Or Aluf</b><span>Home Task</span></div>
+  </div>
+  <button class="intro-skip" type="button" id="intro-skip">Skip intro</button>
+</div>
+
+<header class="band">
+  <div class="wrap">
+    <div class="eyebrow">40rty · Success Engineer home task</div>
+    <h1>Agentic Readiness Audits</h1>
+    <p class="lede">How well AI shopping agents find, understand and sell two brands today, and what each one should fix first.</p>
+    <div class="meta"><span>Prepared by <b>Or Aluf</b></span><span><b>Vuori</b> · vuoriclothing.com</span><span><b>GlassesUSA</b> · glassesusa.com</span><span>Audited 14–17 Oct 2026 · public data only</span></div>
+    <div class="actions">
+      <button class="btn primary" type="button" data-zip="1" data-name="40rty_Submission.zip" hidden>Download everything (ZIP)</button>
+      <span class="note">2 decks, 2 findings reports, 2 client emails, 1 method document</span>
+    </div>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Sections"><div class="wrap">
+  <a href="#overview">Overview</a><a href="#vuori">Vuori</a><a href="#glassesusa">GlassesUSA</a><a href="#method">Method and tools</a><a href="#files">All files</a>
+</div></nav>
+
+<main class="wrap">
+  <section id="overview">
+    <div class="stats">
+      <div><b>60</b><span>AI runs logged, 30 per brand</span></div>
+      <div><b>3</b><span>engines: ChatGPT, Perplexity, Gemini</span></div>
+      <div><b>6 × 2</b><span>aspects scored per brand, 0–4 each</span></div>
+      <div><b>100%</b><span>of deck claims checked against the brand's site</span></div>
+    </div>
+    <div class="cards">
+      <article class="card">
+        <div class="card-top">
+          <div><h2>Vuori</h2><div class="domain">vuoriclothing.com · Shopify, headless</div></div>
+          <div class="score"><div class="n">58<small>/100</small></div><span class="pill">Partially ready</span></div>
+        </div>
+        <p class="thesis">AI agents already recommend Vuori. They just don't learn about Vuori from Vuori.</p>
+        <div class="bars">
+          <span class="lab">AI visibility <span class="w">30%</span></span><span class="track"><span class="fill" style="width:75%"></span></span><span class="v">3/4</span>
+          <span class="lab">Product data <span class="w">20%</span></span><span class="track"><span class="fill" style="width:50%"></span></span><span class="v">2/4</span>
+          <span class="lab">Structured data <span class="w">15%</span></span><span class="track"><span class="fill" style="width:50%"></span></span><span class="v">2/4</span>
+          <span class="lab">Catalog <span class="w">10%</span></span><span class="track"><span class="fill" style="width:50%"></span></span><span class="v">2/4</span>
+          <span class="lab">Trust &amp; policy <span class="w">10%</span></span><span class="track"><span class="fill" style="width:50%"></span></span><span class="v">2/4</span>
+          <span class="lab">Transactability <span class="w">15%</span></span><span class="track"><span class="fill" style="width:50%"></span></span><span class="v">2/4</span>
+        </div>
+        <a class="go" href="#vuori">Read the Vuori audit ↓</a>
+      </article>
+      <article class="card">
+        <div class="card-top">
+          <div><h2>GlassesUSA</h2><div class="domain">glassesusa.com · React on Magento, not Shopify</div></div>
+          <div class="score"><div class="n">53<small>/100</small></div><span class="pill">Partially ready</span></div>
+        </div>
+        <p class="thesis">AI agents trust GlassesUSA as a store, but can't yet sell its products.</p>
+        <div class="bars">
+          <span class="lab">AI visibility <span class="w">30%</span></span><span class="track"><span class="fill" style="width:50%"></span></span><span class="v">2/4</span>
+          <span class="lab">Product data <span class="w">20%</span></span><span class="track"><span class="fill" style="width:50%"></span></span><span class="v">2/4</span>
+          <span class="lab">Structured data <span class="w">15%</span></span><span class="track"><span class="fill" style="width:50%"></span></span><span class="v">2/4</span>
+          <span class="lab">Catalog <span class="w">10%</span></span><span class="track"><span class="fill" style="width:50%"></span></span><span class="v">2/4</span>
+          <span class="lab">Trust &amp; policy <span class="w">10%</span></span><span class="track"><span class="fill" style="width:75%"></span></span><span class="v">3/4</span>
+          <span class="lab">Transactability <span class="w">15%</span></span><span class="track"><span class="fill" style="width:50%"></span></span><span class="v">2/4</span>
+        </div>
+        <a class="go" href="#glassesusa">Read the GlassesUSA audit ↓</a>
+      </article>
+    </div>
+    <p class="scale-note">Score: six aspects rated 0–4, weighted by how directly each affects a purchase made through an agent, scaled to 100. Bands: 0–39 not agent-ready, 40–69 partially ready, 70–100 agent-ready.</p>
+  </section>
+
+  <!-- VUORI -->
+  <section class="chapter" id="vuori">
+    <div class="chapter-head">
+      <div class="eyebrow">Vuori · 58/100 · audited 14–15 Oct 2026</div>
+      <h2>Agents know Vuori and like it. Vuori doesn't control what they say.</h2>
+      <p class="sub">27 shopper questions and 3 purchase tasks across ChatGPT, Perplexity and Gemini, plus a technical read of 4 hero products: Sunday Performance Jogger, Kore Short, Women's Performance Jogger, Meta Pant.</p>
+    </div>
+    <div class="two">
+      <div class="list-block"><h3>Where Vuori stands</h3><ol>
+        <li><div><b>Known, not controlled.</b><span>Recommended in 22 of 27 shopper questions, but Vuori's own site was a source in 1 of 24. Agents learn from magazines and Reddit, and some facts come back wrong.</span><div class="kpi">KPI · Agent Sessions</div></div></li>
+        <li><div><b>The feed undersells the product.</b><span>ChatGPT shows the Sunday Jogger with 3,547 reviews; Vuori's site shows 14,596.</span><div class="kpi">KPI · Conversion</div></div></li>
+        <li><div><b>The buy step fails.</b><span>Asked to buy one exact Sunday variant, 0 of 3 agents gave a checkout-ready link.</span><div class="kpi">KPI · Attributed Revenue</div></div></li>
+      </ol></div>
+      <div class="list-block"><h3>Fix first, next 30 days</h3><ol>
+        <li><div><b>Agent-ready listings for the 4 hero products.</b><span>Who it's for, top use cases, fit, and when not to buy. Low effort.</span></div></li>
+        <li><div><b>Fix the product feed.</b><span>Group-level review totals and links to the exact variant. Low to medium effort.</span></div></li>
+        <li><div><b>Add structured attributes.</b><span>Inseam, lining, fit, shipping and returns as data, not only in copy. Medium effort.</span></div></li>
+      </ol></div>
+    </div>
+
+    <div class="viewer" data-viewer="vu">
+      <div class="viewer-bar"><span class="t">Audit deck · 8 slides</span><span class="count" aria-live="polite">1 / 8</span></div>
+      <div class="stage">
+        <img src="slides/vu-1.jpg" alt="Vuori audit deck, slide 1" width="1600" height="900">
+        <button class="nav-btn prev" type="button" aria-label="Previous slide">‹</button>
+        <button class="nav-btn next" type="button" aria-label="Next slide">›</button>
+      </div>
+      <div class="thumbs"></div>
+    </div>
+
+    <div class="files">
+      <div class="file"><div class="ft">Audit deck</div><div class="fd">8 slides: executive summary, six aspects, action plan.</div><div class="fm">PDF · 3.3 MB</div>
+        <div class="actions"><a class="btn" href="Vuori/Vuori_Audit_Deck.pdf" target="_blank" rel="noopener">Open</a><button class="btn" type="button" data-dl="Vuori/Vuori_Audit_Deck.pdf" data-name="Vuori_Audit_Deck.pdf" hidden>Download</button></div></div>
+      <div class="file"><div class="ft">Findings report</div><div class="fd">Every check we ran, how we measured it, what we found, what to fix.</div><div class="fm">PDF · 9 pages</div>
+        <div class="actions"><a class="btn" href="Vuori/Vuori_Audit_Findings.pdf" target="_blank" rel="noopener">Open</a><button class="btn" type="button" data-dl="Vuori/Vuori_Audit_Findings.pdf" data-name="Vuori_Audit_Findings.pdf" hidden>Download</button></div></div>
+      <div class="file"><div class="ft">Client email</div><div class="fd">The review-call email sent with the deck.</div><div class="fm">PDF · 157 words</div>
+        <div class="actions"><a class="btn" href="Vuori/Vuori_Client_Email.pdf" target="_blank" rel="noopener">Open</a><button class="btn" type="button" data-dl="Vuori/Vuori_Client_Email.pdf" data-name="Vuori_Client_Email.pdf" hidden>Download</button></div></div>
+    </div>
+
+    <details class="email">
+      <summary>Read the Vuori client email <span>157 words · limit 200</span></summary>
+      <div class="email-body">
+        <div class="subj"><b>Subject</b>Vuori × AI shopping agents: your first audit + a 20-min review</div>
+<pre id="mail-vu">Hi [Name],
+
+We tested how ChatGPT, Perplexity and Gemini find, describe and sell Vuori. Good news first: agents already like you. Vuori was recommended in 22 of 27 real shopper questions and named first in 9.
+
+Three things are holding back sales from these agents:
+
+1. They learn about Vuori from magazines and Reddit, not from you. Your own site was a source in 1 of 24 answers, and some product facts came back wrong.
+2. Your product feed undersells you. ChatGPT shows the Sunday Jogger with 3,547 reviews; your site has 14,596.
+3. The buy step breaks. Asked to buy an exact Sunday variant, 0 of 3 agents gave a checkout-ready link.
+
+The first fixes are mostly content and feed settings, low effort, and we can measure the change in 30 days.
+
+The full audit is attached. Could we take 20 minutes this week to walk through it and agree on owners?
+
+Best,
+[Your name]
+40rty</pre>
+        <div><button class="btn" type="button" data-copy="mail-vu">Copy email</button></div>
+      </div>
+    </details>
+  </section>
+
+  <!-- GLASSESUSA -->
+  <section class="chapter" id="glassesusa">
+    <div class="chapter-head">
+      <div class="eyebrow">GlassesUSA · 53/100 · audited 17 Oct 2026</div>
+      <h2>Agents name GlassesUSA as the place to buy. They don't sell its frames.</h2>
+      <p class="sub">The same 27 + 3 runs, plus a bot-access test with 13 crawler user agents. Hero products: Oakley Sutro (running), Muse Elliot (house brand), Ottoto Ellsworth (blue-light), Ray-Ban RB2140 Wayfarer.</p>
+    </div>
+    <div class="two">
+      <div class="list-block"><h3>Where GlassesUSA stands</h3><ol>
+        <li><div><b>A store, not a product.</b><span>Named in 9 of 9 "where to buy prescription glasses" answers, but 0 of 9 running-sunglasses and 0 of 3 blue-light answers.</span><div class="kpi">KPI · Agent Sessions</div></div></li>
+        <li><div><b>The real price is invisible.</b><span>An Rx Wayfarer costs $215.50 with lenses, but that total sits inside a 4-step configurator. 0 of 6 agent answers stated it.</span><div class="kpi">KPI · Conversion</div></div></li>
+        <li><div><b>The buy step breaks.</b><span>Asked to buy one exact Wayfarer, 2 of 3 agents linked a duplicate listing at a different price.</span><div class="kpi">KPI · Attributed Revenue</div></div></li>
+      </ol></div>
+      <div class="list-block"><h3>Fix first, next 30 days</h3><ol>
+        <li><div><b>Publish the complete price and Rx status.</b><span>"With single-vision lenses from $X" and "prescription eligible" as text and schema on hero pages. Medium effort.</span></div></li>
+        <li><div><b>Agent-ready listings and a running FAQ that names products.</b><span>Say who each hero product is for. Low effort.</span></div></li>
+        <li><div><b>Let verified AI agents through bot protection.</b><span>About 1 in 5 non-JavaScript page requests got an empty challenge page. Low to medium effort.</span></div></li>
+      </ol></div>
+    </div>
+
+    <div class="viewer" data-viewer="gs">
+      <div class="viewer-bar"><span class="t">Audit deck · 8 slides</span><span class="count" aria-live="polite">1 / 8</span></div>
+      <div class="stage">
+        <img src="slides/gs-1.jpg" alt="GlassesUSA audit deck, slide 1" width="1600" height="900">
+        <button class="nav-btn prev" type="button" aria-label="Previous slide">‹</button>
+        <button class="nav-btn next" type="button" aria-label="Next slide">›</button>
+      </div>
+      <div class="thumbs"></div>
+    </div>
+
+    <div class="files">
+      <div class="file"><div class="ft">Audit deck</div><div class="fd">8 slides: executive summary, six aspects, action plan.</div><div class="fm">PDF · 0.5 MB</div>
+        <div class="actions"><a class="btn" href="GlassesUSA/GlassesUSA_Audit_Deck.pdf" target="_blank" rel="noopener">Open</a><button class="btn" type="button" data-dl="GlassesUSA/GlassesUSA_Audit_Deck.pdf" data-name="GlassesUSA_Audit_Deck.pdf" hidden>Download</button></div></div>
+      <div class="file"><div class="ft">Findings report</div><div class="fd">Every check we ran, how we measured it, what we found, what to fix.</div><div class="fm">PDF · 8 pages</div>
+        <div class="actions"><a class="btn" href="GlassesUSA/GlassesUSA_Audit_Findings.pdf" target="_blank" rel="noopener">Open</a><button class="btn" type="button" data-dl="GlassesUSA/GlassesUSA_Audit_Findings.pdf" data-name="GlassesUSA_Audit_Findings.pdf" hidden>Download</button></div></div>
+      <div class="file"><div class="ft">Client email</div><div class="fd">The review-call email sent with the deck.</div><div class="fm">PDF · 177 words</div>
+        <div class="actions"><a class="btn" href="GlassesUSA/GlassesUSA_Client_Email.pdf" target="_blank" rel="noopener">Open</a><button class="btn" type="button" data-dl="GlassesUSA/GlassesUSA_Client_Email.pdf" data-name="GlassesUSA_Client_Email.pdf" hidden>Download</button></div></div>
+    </div>
+
+    <details class="email">
+      <summary>Read the GlassesUSA client email <span>177 words · limit 200</span></summary>
+      <div class="email-body">
+        <div class="subj"><b>Subject</b>GlassesUSA × AI shopping agents: your first audit + a 20-min review</div>
+<pre id="mail-gs">Hi [Name],
+
+We tested how ChatGPT, Perplexity and Gemini find, describe and sell GlassesUSA. Good news first: agents trust you as a store. GlassesUSA was named in 9 of 9 answers to "where to buy prescription glasses online", often as "Best overall".
+
+Three things are holding back sales from these agents:
+
+1. They don't recommend your products. You were named in 0 of 9 running-sunglasses answers and 0 of 3 blue-light answers, even though you sell the frames agents pick.
+2. They can't see the real price. An Rx Wayfarer costs $215.50 with lenses, but that total sits inside the lens configurator; 0 of 6 agent answers stated a complete price.
+3. The buy step breaks. Asked to buy one exact Wayfarer, 2 of 3 agents linked a different listing at a different price.
+
+The first fixes are content and configuration, with no replatforming, and we can measure the change in 30 days.
+
+The full audit is attached. Could we take 20 minutes this week to walk through it and agree on owners?
+
+Best,
+[Your name]
+40rty</pre>
+        <div><button class="btn" type="button" data-copy="mail-gs">Copy email</button></div>
+      </div>
+    </details>
+  </section>
+
+  <!-- METHOD -->
+  <section class="chapter" id="method">
+    <div class="chapter-head">
+      <div class="eyebrow">Method and tools</div>
+      <h2>AI collected and drafted. I checked every claim and made the calls.</h2>
+      <p class="sub">One method for both brands, so the two scores compare. Vuori built the method; GlassesUSA reused it with almost all data collection automated.</p>
+    </div>
+    <ol class="steps">
+      <li><b>Framing</b><span>Brief, 40rty's product and its 4 KPIs. Every finding names one.</span></li>
+      <li><b>Hero products</b><span>4 per brand, each tied to one shopper prompt.</span></li>
+      <li><b>Technical read</b><span>Platform, crawler access, raw vs rendered HTML, schema, policies, guest checkout.</span></li>
+      <li><b>AI visibility</b><span>5 prompts × 3 engines, main 2 run 3 times, plus 3 purchase tasks.</span></li>
+      <li><b>Verification</b><span>Each engine claim checked on the brand's site: confirmed, error or open.</span></li>
+      <li><b>Score and plan</b><span>Scripted metrics, weighted score, 6 ranked fixes with owners.</span></li>
+    </ol>
+    <div class="tbl"><table>
+      <thead><tr><th>Tool</th><th>How I used it</th></tr></thead>
+      <tbody>
+        <tr><td>Claude (Opus, Fable)</td><td>Main analyst and engineer: parsed raw HTML and JSON-LD, wrote the scripts, drafted findings, built the decks and emails.</td></tr>
+        <tr><td>Claude in Chrome</td><td>Browser agent that ran every prompt in a new temporary chat, saved screenshots and full text, and logged one CSV row per run.</td></tr>
+        <tr><td>Grok</td><td>Independent second auditor on GlassesUSA. Its claims were re-checked on the live site before any were accepted.</td></tr>
+        <tr><td>Python and PowerShell</td><td>Metrics computed from the run log, never typed by hand. Crawler test: 13 user agents × 7 pages, run twice.</td></tr>
+        <tr><td>US VPN, clean profile</td><td>New accounts, English UI, default free models, web search on, location checked before each batch.</td></tr>
+        <tr><td>ChatGPT, Perplexity, Gemini</td><td>The subject of the audit, tested only as a shopper sees them.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="rule"><b>What checking caught.</b> Our own automation labelled Gemini's "Vuori Cascade Tech Chino" a hallucination; the product exists, so Gemini was right. It also read a feed rating of 2,254 reviews as the page rating of 26,547, which became a finding in its own right.</div>
+    <div class="actions">
+      <a class="btn" href="Method_and_Tools.pdf" target="_blank" rel="noopener">Open the method document</a>
+      <button class="btn" type="button" data-dl="Method_and_Tools.pdf" data-name="Method_and_Tools.pdf" hidden>Download PDF</button>
+      <span class="note">8 pages: tools, workflow, how AI output was checked, limitations, evidence map.</span>
+    </div>
+  </section>
+
+  <section class="chapter" id="files">
+    <div class="chapter-head">
+      <div class="eyebrow">All files</div>
+      <h2>Everything in one folder</h2>
+    </div>
+    <div class="tbl"><table>
+      <thead><tr><th>Folder</th><th>Files</th></tr></thead>
+      <tbody>
+        <tr><td>Vuori/</td><td class="mono">Vuori_Audit_Deck.pdf · Vuori_Audit_Findings.pdf · Vuori_Client_Email.pdf</td></tr>
+        <tr><td>GlassesUSA/</td><td class="mono">GlassesUSA_Audit_Deck.pdf · GlassesUSA_Audit_Findings.pdf · GlassesUSA_Client_Email.pdf</td></tr>
+        <tr><td>(root)</td><td class="mono">Method_and_Tools.pdf</td></tr>
+      </tbody>
+    </table></div>
+    <div class="actions">
+      <button class="btn primary" type="button" data-zip="1" data-name="40rty_Submission.zip" hidden>Download everything (ZIP)</button>
+      <span class="note" data-fallback>Each file also opens on its own from the sections above.</span>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap"><span>Agentic Readiness Audits · Vuori and GlassesUSA · October 2026</span><span>Public data only. No contact with either brand, no accounts in their name, no purchases.</span></div></footer>
+<div class="toast" id="toast" hidden></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script>
+(function(){
+  var intro=document.getElementById('intro');
+  if(intro){
+    var gone=function(){if(intro.parentNode)intro.parentNode.removeChild(intro)};
+    intro.addEventListener('animationend',function(e){if(e.animationName==='introLift')gone()});
+    document.getElementById('intro-skip').addEventListener('click',function(){intro.classList.add('done')});
+    setTimeout(gone,4500);
+  }
+  function toast(msg){var t=document.getElementById('toast');t.textContent=msg;t.hidden=false;clearTimeout(toast._h);toast._h=setTimeout(function(){t.hidden=true},2600)}
+  // slide viewers
+  document.querySelectorAll('[data-viewer]').forEach(function(v){
+    var key=v.getAttribute('data-viewer'),n=8,i=1;
+    var img=v.querySelector('.stage img'),count=v.querySelector('.count'),th=v.querySelector('.thumbs');
+    var name=key==='vu'?'Vuori':'GlassesUSA';
+    for(var k=1;k<=n;k++){(function(k){var b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Slide '+k);var im=document.createElement('img');im.src='slides/'+key+'-'+k+'.jpg';im.alt='';im.loading='lazy';b.appendChild(im);b.addEventListener('click',function(){go(k)});th.appendChild(b)})(k)}
+    function go(k){i=(k-1+n)%n+1;img.src='slides/'+key+'-'+i+'.jpg';img.alt=name+' audit deck, slide '+i;count.textContent=i+' / '+n;th.querySelectorAll('button').forEach(function(b,j){b.setAttribute('aria-current',j+1===i?'true':'false')})}
+    v.querySelector('.prev').addEventListener('click',function(){go(i-1)});
+    v.querySelector('.next').addEventListener('click',function(){go(i+1)});
+    v.tabIndex=0;v.addEventListener('keydown',function(e){if(e.key==='ArrowLeft'){go(i-1);e.preventDefault()}if(e.key==='ArrowRight'){go(i+1);e.preventDefault()}});
+    go(1);
+  });
+  // copy email
+  document.querySelectorAll('[data-copy]').forEach(function(b){b.addEventListener('click',function(){
+    var el=document.getElementById(b.getAttribute('data-copy'));var txt=el.textContent;
+    var p=navigator.clipboard&&navigator.clipboard.writeText?navigator.clipboard.writeText(txt):Promise.reject();
+    p.then(function(){toast('Email copied')},function(){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r);toast('Text selected. Press Ctrl+C to copy')});
+  })});
+  // outside Claude (e.g. GitHub Pages): plain browser downloads
+  if(!(window.claude&&claude.use)){
+    var plain=function(href,name){var a=document.createElement('a');a.href=href;a.download=name;document.body.appendChild(a);a.click();a.remove()};
+    document.querySelectorAll('[data-dl]').forEach(function(b){b.hidden=false;b.addEventListener('click',function(){plain(b.getAttribute('data-dl'),b.getAttribute('data-name'))})});
+    document.querySelectorAll('[data-zip]').forEach(function(b){b.hidden=false;b.addEventListener('click',function(){plain('40rty_Submission.zip','40rty_Submission.zip')})});
+    document.querySelectorAll('[data-fallback]').forEach(function(a){a.hidden=true});
+  }
+  // downloads (capability); buttons stay hidden when unavailable
+  if(window.claude&&claude.use){claude.use('downloads').then(function(dl){
+    if(!dl)return;
+    document.querySelectorAll('[data-dl]').forEach(function(b){b.hidden=false;b.addEventListener('click',function(){
+      b.disabled=true;
+      fetch(b.getAttribute('data-dl')).then(function(r){if(!r.ok)throw 0;return r.blob()})
+        .then(function(blob){return dl.save({filename:b.getAttribute('data-name'),data:blob})})
+        .then(function(res){if(res&&res.status==='saved')toast('Download started')})
+        .catch(function(e){if(!e||e.code!=='declined')toast('Download unavailable here. Use Open instead.')})
+        .finally(function(){b.disabled=false});
+    })});
+    var ZIPFILES=['Vuori/Vuori_Audit_Deck.pdf','Vuori/Vuori_Audit_Findings.pdf','Vuori/Vuori_Client_Email.pdf','GlassesUSA/GlassesUSA_Audit_Deck.pdf','GlassesUSA/GlassesUSA_Audit_Findings.pdf','GlassesUSA/GlassesUSA_Client_Email.pdf','Method_and_Tools.pdf'];
+    if(window.JSZip){document.querySelectorAll('[data-zip]').forEach(function(b){b.hidden=false;b.addEventListener('click',function(){
+      b.disabled=true;var label=b.textContent;b.textContent='Preparing ZIP…';var z=new JSZip();
+      Promise.all(ZIPFILES.map(function(f){return fetch(f).then(function(r){if(!r.ok)throw 0;return r.blob()}).then(function(bl){z.file('40rty_Submission/'+f,bl)})}))
+        .then(function(){return z.generateAsync({type:'blob'})})
+        .then(function(blob){return dl.save({filename:'40rty_Submission.zip',data:blob})})
+        .then(function(res){if(res&&res.status==='saved')toast('Download started')})
+        .catch(function(e){if(!e||e.code!=='declined')toast('ZIP unavailable here. Open each file instead.')})
+        .finally(function(){b.disabled=false;b.textContent=label});
+    })})}
+  })}
+})();
+</script>
+</body></html>
