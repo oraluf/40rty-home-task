@@ -55,7 +55,9 @@ nav.toc a:hover{color:var(--ink);background:var(--panel)}
 /* brand cards */
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:20px;padding-block:36px 8px}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:24px;display:grid;gap:18px;min-width:0}
-.card-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:flex-start}
+.card-top>div:first-child{min-width:0}
+@media (max-width:420px){.card-top{flex-wrap:wrap}}
+.card-top{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}
 .card h2{font-size:26px}
 .card .domain{font-family:var(--f-mono);font-size:13px;color:var(--muted)}
 .score{text-align:right;flex:none}
@@ -204,7 +206,7 @@ footer .wrap{padding-block:28px 40px;display:flex;justify-content:space-between;
     <div class="cards">
       <article class="card">
         <div class="card-top">
-          <div><h2>Vuori</h2><div class="domain">vuoriclothing.com · Shopify, headless</div></div>
+          <div><h2>Vuori</h2><div class="domain">vuoriclothing.com</div><div class="domain">Shopify, headless storefront</div></div>
           <div class="score"><div class="n">58<small>/100</small></div><span class="pill">Partially ready</span></div>
         </div>
         <p class="thesis">AI agents already recommend Vuori. They just don't learn about Vuori from Vuori.</p>
@@ -220,7 +222,7 @@ footer .wrap{padding-block:28px 40px;display:flex;justify-content:space-between;
       </article>
       <article class="card">
         <div class="card-top">
-          <div><h2>GlassesUSA</h2><div class="domain">glassesusa.com · React on Magento, not Shopify</div></div>
+          <div><h2>GlassesUSA</h2><div class="domain">glassesusa.com</div><div class="domain">React on Magento, not Shopify</div></div>
           <div class="score"><div class="n">53<small>/100</small></div><span class="pill">Partially ready</span></div>
         </div>
         <p class="thesis">AI agents trust GlassesUSA as a store, but can't yet sell its products.</p>
